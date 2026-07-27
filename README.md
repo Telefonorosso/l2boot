@@ -153,7 +153,8 @@ sudo ./l2boot-hdf-server eth0 /dev/sdb
 Check the device first:
 
 ```sh
-fdisk -l```
+fdisk -l
+```
 
 Before exposing a block device:
 
