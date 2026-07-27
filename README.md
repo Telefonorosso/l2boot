@@ -53,7 +53,7 @@ gcc -O2 -Wall -Wextra \
 For an existing RDB HDF:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 disk.hdf
+ ./l2boot-hdf-server eth0 disk.hdf
 ```
 
 Replace `eth0` with the correct interface.
@@ -88,7 +88,7 @@ The system will reboot and scan for the server in the broadcast domain.
 ## Existing RDB image
 
 ```sh
-sudo ./l2boot-hdf-server eth0 workbench.hdf
+ ./l2boot-hdf-server eth0 workbench.hdf
 ```
 
 Native RDB images are writable by default.
@@ -96,7 +96,7 @@ Native RDB images are writable by default.
 ## Read-only mode
 
 ```sh
-sudo ./l2boot-hdf-server eth0 disk.hdf --protect
+ ./l2boot-hdf-server eth0 disk.hdf --protect
 ```
 
 Use this for preserved, unknown or damaged images.
@@ -104,7 +104,7 @@ Use this for preserved, unknown or damaged images.
 ## Prevent automatic boot
 
 ```sh
-sudo ./l2boot-hdf-server eth0 disk.hdf --noboot
+ ./l2boot-hdf-server eth0 disk.hdf --noboot
 ```
 
 The disk remains visible and writable, but its partitions are presented temporarily with:
@@ -136,7 +136,7 @@ A blank file has no RDB and is protected from writes by default.
 Start the server once with:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 blank-256m.hdf --allow-raw-write --noboot
+ ./l2boot-hdf-server eth0 blank-256m.hdf --allow-raw-write --noboot
 ```
 
 Then:
@@ -151,13 +151,13 @@ Then:
 9. Restart the server without any option when ready:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 blank-256m.hdf
+ ./l2boot-hdf-server eth0 blank-256m.hdf
 ```
 
 ## Linux block devices
 
 ```sh
-sudo ./l2boot-hdf-server eth0 /dev/sdb
+ ./l2boot-hdf-server eth0 /dev/sdb
 ```
 
 Check the device first:
@@ -175,7 +175,7 @@ Before exposing a block device:
 For an initial read-only test:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 /dev/sdb --protect
+ ./l2boot-hdf-server eth0 /dev/sdb --protect
 ```
 
 ## Direct DOS filesystem images e.g. FLOPPY IMAGES
@@ -190,31 +190,31 @@ By default, the server can expose compatible images through a temporary virtual 
 Writable RDB image:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 l2boot.hdf
+ ./l2boot-hdf-server eth0 l2boot.hdf
 ```
 
 Read-only image:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 l2boot.hdf --protect
+ ./l2boot-hdf-server eth0 l2boot.hdf --protect
 ```
 
 Visible but not preferred for boot:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 l2boot.hdf --noboot
+ ./l2boot-hdf-server eth0 l2boot.hdf --noboot
 ```
 
 Blank disk initialization:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 blank.hdf --allow-raw-write
+ ./l2boot-hdf-server eth0 blank.hdf --allow-raw-write
 ```
 
 Physical disk:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 /dev/sdb
+ ./l2boot-hdf-server eth0 /dev/sdb
 ```
 
 ## Linux virtual machines
