@@ -25,12 +25,6 @@ Amiga:
 * supplied `scsi.device`
 * supplied `l2remote.boot`
 
-LoadModule can be downloaded from Aminet:
-https://aminet.net/package/util/boot/LoadModule
-
-The CFD Project is hosted at:
-https://aminet.net/package/driver/media/cfd.v20260614
-
 Linux:
 
 * any Linux computer
@@ -297,6 +291,12 @@ Current limitations:
 * ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
 
 ## Credits
+
+LoadModule can be downloaded from Aminet:
+https://aminet.net/package/util/boot/LoadModule
+
+The CFD Project is hosted at:
+https://aminet.net/package/driver/media/cfd.v20260614
 
 l2boot - Francesco Talarico
 
