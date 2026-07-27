@@ -20,10 +20,16 @@ Amiga:
 * Amiga 600 or Amiga 1200
 * AmigaOS 3.x
 * 3Com EtherLink III PCMCIA card
-* `LoadModule` https://aminet.net/package/util/boot/LoadModule
-* supplied `ptable.library` https://aminet.net/package/driver/media/cfd.v20260614
+* `LoadModule`
+* supplied `ptable.library`
 * supplied `scsi.device`
 * supplied `l2remote.boot`
+
+LoadModule can be downloaded from Aminet:
+https://aminet.net/package/util/boot/LoadModule
+
+The CFD Project is hosted at:
+https://aminet.net/package/driver/media/cfd.v20260614
 
 Linux:
 
