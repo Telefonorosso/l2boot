@@ -9,7 +9,7 @@ The remote storage appears as:
 scsi.device unit 0
 ````
 
-No custom Kickstart ROM is required. The Amiga components are loaded at boot with `LoadModule`.
+No custom Kickstart ROM or dedicated hardware are required (except the 3Com network card). The Amiga components are loaded at boot with `LoadModule`.
 
 ## Quick start
 
