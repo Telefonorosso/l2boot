@@ -28,9 +28,9 @@ Amiga:
 Linux:
 
 * any Linux computer
-* Ethernet interface connected to the Amiga network
-* GCC
+* Ethernet connection to the Amiga
 * root privileges
+* GCC (apt-get build-essential)
 
 A Raspberry Pi is convenient but not required.
 
