@@ -48,6 +48,12 @@ gcc -O2 -Wall -Wextra \
     l2boot-pi-hdf-server-v50-data1024-native-rdb-write-blockdev-noboot-auto-peer.c
 ```
 
+Make it executable:
+
+```sh
+chmod +x l2boot-hdf-server
+```
+
 ### 2. Start the server
 
 For an existing RDB HDF:
