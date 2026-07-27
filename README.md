@@ -38,6 +38,8 @@ A Raspberry Pi is convenient but not required.
 
 ```sh
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2boot-pi-hdf-server-v50-data1024-native-rdb-write-blockdev-noboot-auto-peer.c
+```
+```sh
 gcc -O2 -Wall -Wextra \
     -o l2boot-hdf-server \
     l2boot-pi-hdf-server-v50-data1024-native-rdb-write-blockdev-noboot-auto-peer.c
