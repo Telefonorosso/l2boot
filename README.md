@@ -126,27 +126,23 @@ A blank file has no RDB and is protected from writes by default.
 Start the server once with:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 blank-256m.hdf --allow-raw-write
+sudo ./l2boot-hdf-server eth0 blank-256m.hdf --allow-raw-write --noboot
 ```
 
 Then:
 
-1. Boot the Amiga from another disk.
-2. Start HDToolBox.
-3. Select `scsi.device` unit `0`.
-4. Define the drive if required.
-5. Create and save the partitions.
-6. Stop the Linux server.
-7. Restart it without `--allow-raw-write`.
-8. Reboot and format the partitions.
-
-Normal use:
+1. Boot the Amiga and do LoadModule
+2. Start HDToolBox with `scsi.device` unit `0`.
+3. "Define" the drive.
+5. Create and save the partitions (set a high bootpri!)
+6. Reboot the Amiga
+7. Format the partitions
+8. Make some use of them
+9. Restart the server without any option when ready:
 
 ```sh
 sudo ./l2boot-hdf-server eth0 blank-256m.hdf
 ```
-
-Use `--allow-raw-write` only while creating the first RDB.
 
 ## Linux block devices
 
@@ -157,15 +153,13 @@ sudo ./l2boot-hdf-server eth0 /dev/sdb
 Check the device first:
 
 ```sh
-lsblk -o NAME,SIZE,MODEL,FSTYPE,MOUNTPOINTS
-```
+fdisk -l```
 
 Before exposing a block device:
 
 * verify the device name;
 * confirm it is not the Linux system disk;
-* unmount its Linux filesystems;
-* ensure no other program is writing to it.
+* BE CAREFUL
 
 For an initial read-only test:
 
@@ -173,42 +167,31 @@ For an initial read-only test:
 sudo ./l2boot-hdf-server eth0 /dev/sdb --protect
 ```
 
-## Direct DOS filesystem images
+## Direct DOS filesystem images e.g. FLOPPY IMAGES
 
 Some images begin directly with `DOS\0` to `DOS\7` and contain no RDB.
 
 By default, the server can expose compatible images through a temporary virtual RDB.
 
-To disable this behavior:
-
-```sh
-sudo ./l2boot-hdf-server eth0 filesystem.hdf --raw
-```
 
 ## Typical commands
 
 Writable RDB image:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 workbench.hdf
+sudo ./l2boot-hdf-server eth0 l2boot.hdf
 ```
 
 Read-only image:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 workbench.hdf --protect
+sudo ./l2boot-hdf-server eth0 l2boot.hdf --protect
 ```
 
 Visible but not preferred for boot:
 
 ```sh
-sudo ./l2boot-hdf-server eth0 workbench.hdf --noboot
-```
-
-Read-only and non-booting:
-
-```sh
-sudo ./l2boot-hdf-server eth0 archive.hdf --protect --noboot
+sudo ./l2boot-hdf-server eth0 l2boot.hdf --noboot
 ```
 
 Blank disk initialization:
@@ -286,10 +269,9 @@ Verified or targeted:
 
 Current limitations:
 
-* one remote disk;
-* `scsi.device` unit `0`;
 * supported 3Com PCMCIA adapters only;
-* hot removal during disk access is unsupported.
+* hot removal (disk swapping) is unsupported.
+* ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
 
 ```
 ```
