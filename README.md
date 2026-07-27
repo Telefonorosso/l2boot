@@ -20,8 +20,8 @@ Amiga:
 * Amiga 600 or Amiga 1200
 * AmigaOS 3.x
 * 3Com EtherLink III PCMCIA card
-* `LoadModule`
-* supplied `ptable.library`
+* `LoadModule` https://aminet.net/package/util/boot/LoadModule
+* supplied `ptable.library` https://aminet.net/package/driver/media/cfd.v20260614
 * supplied `scsi.device`
 * supplied `l2remote.boot`
 
@@ -273,6 +273,16 @@ Current limitations:
 * supported 3Com PCMCIA adapters only;
 * hot removal (disk swapping) is unsupported.
 * ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
+
+## Credits
+
+l2boot - Francesco Talarico
+
+ptable.library - Jaroslav Pulchart
+
+Original compactflash.device/CFD project - Torsten Jager
+
+LoadModule - Thomas Richter and Etienne Vogt
 
 ```
 ```
