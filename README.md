@@ -126,13 +126,13 @@ The source disk is not modified.
 Fully allocated 256 MiB image:
 
 ```sh
-dd if=/dev/zero of=blank-256m.hdf bs=1M count=256 status=progress
+dd if=/dev/zero of=blank.hdf bs=1M count=256 status=progress
 ```
 
 Sparse 1 GiB image:
 
 ```sh
-truncate -s 1G blank-1g.hdf
+truncate -s 1G blank.hdf
 ```
 
 ## Prepare a blank disk
@@ -142,7 +142,7 @@ A blank file has no RDB and is protected from writes by default.
 Start the server once with:
 
 ```sh
- ./l2boot-hdf-server eth0 blank-256m.hdf --allow-raw-write --noboot
+ ./l2boot-hdf-server eth0 blank.hdf --allow-raw-write --noboot
 ```
 
 Then:
@@ -157,7 +157,7 @@ Then:
 9. Restart the server without any option when ready:
 
 ```sh
- ./l2boot-hdf-server eth0 blank-256m.hdf
+ ./l2boot-hdf-server eth0 blank.hdf
 ```
 
 ## Linux block devices
