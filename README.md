@@ -91,21 +91,13 @@ The system will reboot and scan for the server in the broadcast domain.
 * creation of new blank disks;
 * Linux operation on Raspberry Pi, desktop PCs and virtual machines.
 
-## Existing RDB image
-
-```sh
- ./l2boot-hdf-server eth0 workbench.hdf
-```
-
-Native RDB images are writable by default.
-
 ## Read-only mode
 
 ```sh
  ./l2boot-hdf-server eth0 disk.hdf --protect
 ```
 
-Use this for preserved, unknown or damaged images.
+Use this or make a backup of your valuable image beforehand!
 
 ## Prevent automatic boot
 
@@ -113,13 +105,7 @@ Use this for preserved, unknown or damaged images.
  ./l2boot-hdf-server eth0 disk.hdf --noboot
 ```
 
-The disk remains visible and writable, but its partitions are presented temporarily with:
-
-```text
-BootPri -10
-```
-
-The source disk is not modified.
+The disk remains visible and writable, but its partitions are presented temporarily with BootPri -10. The source disk is not modified.
 
 ## Create a blank HDF
 
@@ -136,8 +122,6 @@ truncate -s 1G blank.hdf
 ```
 
 ## Prepare a blank disk
-
-A blank file has no RDB and is protected from writes by default.
 
 Start the server once with:
 
@@ -160,7 +144,7 @@ Then:
  ./l2boot-hdf-server eth0 blank.hdf
 ```
 
-## Linux block devices
+## Linux block devices e.g. MICRO-SD CARDS
 
 ```sh
  ./l2boot-hdf-server eth0 /dev/sdb
@@ -247,24 +231,6 @@ Typical sequential transfer speed is approximately:
 
 Actual performance depends on the Amiga, PCMCIA timing, Linux host, Ethernet adapter and access pattern.
 
-## Components
-
-### `scsi.device`
-
-Exposes the remote storage as `scsi.device` unit `0`.
-
-### `l2remote.boot`
-
-Scans the RDB at boot and registers its partitions.
-
-### `ptable.library`
-
-Provides RDB partition scanning and boot-node support.
-
-### `l2boot-hdf-server`
-
-Linux raw-Ethernet storage server.
-
 ## Compatibility
 
 Verified or targeted:
@@ -289,6 +255,56 @@ Current limitations:
 * supported 3Com PCMCIA adapters only;
 * hot removal (disk swapping) is unsupported.
 * ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
+
+## Components
+
+### `scsi.device`
+
+The Amiga-side storage driver.
+
+It initializes and directly controls the supported 3Com EtherLink III PCMCIA adapter, communicates with the Linux server over raw Ethernet and exposes the remote storage as:
+
+```text
+scsi.device unit 0
+```
+
+To AmigaOS and normal disk utilities, the remote HDF or Linux block device therefore behaves like a standard disk attached to `scsi.device`.
+
+The driver handles normal disk reads and writes, geometry queries, SCSI commands, formatting requests, error handling and communication with the Linux host.
+
+### `ptable.library`
+
+Provides the RDB partition-table support used during the Amiga boot process.
+
+Its job is to understand the Amiga Rigid Disk Block structures stored on `scsi.device` unit 0, locate the `PART` entries and create the corresponding AmigaDOS partition information.
+
+`ptable.library` does **not** communicate with the Linux server and does not implement the Ethernet disk driver itself. It works on top of an already available block device.
+
+L2BootHDF uses `ptable.library` by Jaroslav Pulchart, originating from the Amiga `compactflash.device` / CFD project.
+
+### `l2remote.boot`
+
+A small cold-start bootstrap module specific to L2BootHDF.
+
+Its purpose is to connect the two previous components during early system startup.
+
+After the LoadModule reboot, `scsi.device` becomes available first. `l2remote.boot` then invokes the RDB scanning facilities provided by `ptable.library` for:
+
+```text
+scsi.device unit 0
+```
+
+This causes the remote RDB partitions to be registered early enough to participate in the normal Amiga boot process. `l2remote.boot` contains very little disk logic itself: it is mainly the startup glue that tells `ptable.library` which device and unit should be scanned.
+
+### `l2boot-hdf-server`
+
+The Linux-side raw-Ethernet storage server.
+
+It opens the selected HDF file or Linux block device, answers requests from the Amiga and provides the remote disk contents over Ethernet.
+
+It can serve native RDB images, Linux block devices and compatible direct-DOS filesystem images.
+
+Despite the historical `l2boot-pi-hdf-server` source filename, the server is not Raspberry Pi specific and can run on normal Linux PCs and virtual machines.
 
 ## Credits
 
