@@ -22,7 +22,7 @@ Amiga:
 * 3Com EtherLink III PCMCIA card
 * `LoadModule`
 * supplied `ptable.library`
-* supplied `scsi.device`
+* supplied `l2scsi.device`
 * supplied `l2remote.boot`
 
 Linux:
