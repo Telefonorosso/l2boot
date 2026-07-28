@@ -6,7 +6,7 @@ l2boot allows an Amiga 600 or Amiga 1200 to use and boot from an HDF image or ph
 The remote storage appears as:
 
 ```text
-scsi.device unit 0
+l2scsi.device unit 0
 ````
 
 No custom Kickstart ROM or dedicated hardware are required (except the 3Com network card). The Amiga components are loaded at boot with `LoadModule`.
@@ -69,11 +69,11 @@ Replace `eth0` with the correct interface.
 Run:
 
 ```text
-wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/scsi.device
+wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2scsi.device
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/ptable.library
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2remote.boot
 
-LoadModule ptable.library scsi.device l2remote.boot REVERSE
+LoadModule ptable.library l2scsi.device l2remote.boot REVERSE
 ```
 The system will reboot and scan for the server in the broadcast domain.
 
@@ -233,7 +233,7 @@ Actual performance depends on the Amiga, PCMCIA timing, Linux host, Ethernet ada
 
 ## Compatibility
 
-Verified or targeted:
+Verified:
 
 * Amiga 600;
 * Amiga 1200;
@@ -259,17 +259,17 @@ Current limitations:
 
 ## Components
 
-### `scsi.device`
+### `l2scsi.device`
 
 The Amiga-side storage driver.
 
 It initializes and directly controls the supported 3Com EtherLink III PCMCIA adapter, communicates with the Linux server over raw Ethernet and exposes the remote storage as:
 
 ```text
-scsi.device unit 0
+l2scsi.device unit 0
 ```
 
-To AmigaOS and normal disk utilities, the remote HDF or Linux block device therefore behaves like a standard disk attached to `scsi.device`.
+To AmigaOS and normal disk utilities, the remote HDF or Linux block device therefore behaves like a standard disk attached to `l2scsi.device`.
 
 The driver handles normal disk reads and writes, geometry queries, SCSI commands, formatting requests, error handling and communication with the Linux host.
 
@@ -287,7 +287,7 @@ A small cold-start bootstrap module specific to L2BootHDF.
 
 Its purpose is to connect the two previous components during early system startup.
 
-After the LoadModule reboot, `scsi.device` becomes available first. `l2remote.boot` then invokes the RDB scanning facilities provided by `ptable.library` for `scsi.device`. This causes the remote RDB partitions to be registered early enough to participate in the normal Amiga boot process. `l2remote.boot` contains very little disk logic itself: it is mainly the startup glue that tells `ptable.library` which device and unit should be scanned.
+After the LoadModule reboot, `l2scsi.device` becomes available first. `l2remote.boot` then invokes the RDB scanning facilities provided by `ptable.library` for `l2scsi.device`. This causes the remote RDB partitions to be registered early enough to participate in the normal Amiga boot process. `l2remote.boot` contains very little disk logic itself: it is mainly the startup glue that tells `ptable.library` which device and unit should be scanned.
 
 ### `l2boot-hdf-server`
 
