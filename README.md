@@ -252,9 +252,10 @@ Verified or targeted:
 
 Current limitations:
 
-* supported 3Com PCMCIA adapters only;
-* hot removal (disk swapping) is unsupported.
 * ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
+* LoadModule is incompatible with CPU FASTROM (it hangs forever on a purple screen)
+* hot removal (disk swapping) is unsupported.
+* supported 3Com PCMCIA adapters only;
 
 ## Components
 
