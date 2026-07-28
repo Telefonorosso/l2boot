@@ -214,7 +214,7 @@ Visible but not preferred for boot:
 Blank disk initialization:
 
 ```sh
- ./l2boot-hdf-server eth0 blank.hdf --allow-raw-write
+ ./l2boot-hdf-server eth0 blank.hdf --allow-raw-write --noboot
 ```
 
 Physical disk:
