@@ -132,7 +132,7 @@ Start the server once with:
 Then:
 
 1. Boot the Amiga and do LoadModule
-2. Start HDToolBox with `scsi.device` unit `0`.
+2. Start HDToolBox with `l2scsi.device` unit `0`.
 3. "Define" the drive.
 5. Create and save the partitions (set a high bootpri!)
 6. Reboot the Amiga
