@@ -288,13 +288,7 @@ A small cold-start bootstrap module specific to L2BootHDF.
 
 Its purpose is to connect the two previous components during early system startup.
 
-After the LoadModule reboot, `scsi.device` becomes available first. `l2remote.boot` then invokes the RDB scanning facilities provided by `ptable.library` for:
-
-```text
-scsi.device unit 0
-```
-
-This causes the remote RDB partitions to be registered early enough to participate in the normal Amiga boot process. `l2remote.boot` contains very little disk logic itself: it is mainly the startup glue that tells `ptable.library` which device and unit should be scanned.
+After the LoadModule reboot, `scsi.device` becomes available first. `l2remote.boot` then invokes the RDB scanning facilities provided by `ptable.library` for `scsi.device`. This causes the remote RDB partitions to be registered early enough to participate in the normal Amiga boot process. `l2remote.boot` contains very little disk logic itself: it is mainly the startup glue that tells `ptable.library` which device and unit should be scanned.
 
 ### `l2boot-hdf-server`
 
@@ -322,5 +316,3 @@ Original compactflash.device/CFD project - Torsten Jager
 
 LoadModule - Thomas Richter and Etienne Vogt
 
-```
-```
