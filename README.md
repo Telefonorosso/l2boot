@@ -27,7 +27,7 @@ Amiga:
 
 Linux:
 
-* any Linux computer
+* any Linux computer (tested OK on VirtualBox)
 * Ethernet connection to the Amiga
 * root privileges
 * GCC (apt-get build-essential)
