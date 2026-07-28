@@ -278,9 +278,7 @@ Provides the RDB partition-table support used during the Amiga boot process.
 
 Its job is to understand the Amiga Rigid Disk Block structures stored on `scsi.device` unit 0, locate the `PART` entries and create the corresponding AmigaDOS partition information.
 
-`ptable.library` does **not** communicate with the Linux server and does not implement the Ethernet disk driver itself. It works on top of an already available block device.
-
-L2BootHDF uses `ptable.library` by Jaroslav Pulchart, originating from the Amiga `compactflash.device` / CFD project.
+`ptable.library` does not communicate with the Linux server and does not implement the Ethernet disk driver itself. It works on top of an already available block device.
 
 ### `l2remote.boot`
 
@@ -297,8 +295,6 @@ The Linux-side raw-Ethernet storage server.
 It opens the selected HDF file or Linux block device, answers requests from the Amiga and provides the remote disk contents over Ethernet.
 
 It can serve native RDB images, Linux block devices and compatible direct-DOS filesystem images.
-
-Despite the historical `l2boot-pi-hdf-server` source filename, the server is not Raspberry Pi specific and can run on normal Linux PCs and virtual machines.
 
 ## Credits
 
