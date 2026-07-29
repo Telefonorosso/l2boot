@@ -254,11 +254,7 @@ Current limitations:
 
 The Amiga-side storage driver.
 
-It initializes and directly controls the supported 3Com EtherLink III PCMCIA adapter, communicates with the Linux server over raw Ethernet and exposes the remote storage as:
-
-```text
-l2scsi.device unit 0
-```
+It initializes and directly controls the supported 3Com EtherLink III PCMCIA adapter, communicates with the Linux server over raw Ethernet and exposes the remote storage as `l2scsi.device unit 0`.
 
 To AmigaOS and normal disk utilities, the remote HDF or Linux block device therefore behaves like a standard disk attached to `l2scsi.device`.
 
