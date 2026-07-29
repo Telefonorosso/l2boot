@@ -69,7 +69,7 @@ Replace `eth0` with the correct interface.
 Run:
 
 ```text
-wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2ice
+wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2scsi.device
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/ptable.library
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2remote.boot
 
