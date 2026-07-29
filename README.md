@@ -233,22 +233,20 @@ Verified:
 * Kickstart 40.68 with LoadModule;
 * 3Com EtherLink III PCMCIA 3C589C for 10BASE-T and Coax
 * 3Com EtherLink III PCMCIA 3C589D-TP for 10BASE-T
-* native Amiga RDB images;
+* RDB images;
+* ADF images; 
 * multiple partitions;
-* bootable remote partitions;
-* HDToolBox;
-* Linux regular files;
+* bootable partitions;
 * Linux block devices;
-* Raspberry Pi Linux;
-* desktop Linux;
-* Debian in VirtualBox on Windows.
+* HDToolBox;
+* formatting
 
 Current limitations:
 
 * ADF images with custom bootblock, copy protection, etc. will be UNREADABLE
+* The network card is OWNED by l2boot
 * LoadModule is incompatible with "CPU FASTROM" (it hangs forever on a purple screen)
 * hot removal (disk swapping) is unsupported.
-* supported 3Com PCMCIA adapters only;
 
 ## Components
 
