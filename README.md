@@ -79,7 +79,7 @@ The system will reboot and scan for the server in the broadcast domain.
 
 ## Features
 
-* boot from remote Amiga RDB / ADF images or Linux block devices;
+* boot from remote Amiga RDB/ADF images or Linux block devices;
 * write support;
 * multiple partitions;
 * HDToolBox partitioning and resizing;
@@ -167,13 +167,6 @@ For an initial read-only test:
  ./l2boot-hdf-server eth0 /dev/sdb --protect
 ```
 
-## Direct DOS filesystem images e.g. FLOPPY IMAGES
-
-Floppy images begin directly with `DOS\0` to `DOS\7` and contain no RDB.
-
-By default, the server can expose compatible images through a temporary virtual RDB.
-
-
 ## Typical commands
 
 Writable RDB image:
@@ -252,8 +245,8 @@ Verified:
 
 Current limitations:
 
-* ADF games with custom bootblock, copy protection, etc. will be UNREADABLE
-* LoadModule is incompatible with CPU FASTROM (it hangs forever on a purple screen)
+* ADF images with custom bootblock, copy protection, etc. will be UNREADABLE
+* LoadModule is incompatible with "CPU FASTROM" (it hangs forever on a purple screen)
 * hot removal (disk swapping) is unsupported.
 * supported 3Com PCMCIA adapters only;
 
