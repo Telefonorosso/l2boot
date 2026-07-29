@@ -73,7 +73,7 @@ wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2scsi.device
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/ptable.library
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2remote.boot
 
-LoadModule ptable.library l2scsi.device l2remote.boot REVERSE
+LoadModule ptable.library l2scsi.device l2remote.boot
 ```
 The system will reboot and scan for the server in the broadcast domain.
 
