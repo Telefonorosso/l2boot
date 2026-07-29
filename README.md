@@ -9,7 +9,7 @@ The remote storage appears as:
 l2scsi.device unit 0
 ````
 
-No custom Kickstart ROM or dedicated hardware are required (except the 3Com network card). The Amiga components are loaded at boot with `LoadModule`.
+No custom Kickstart ROM or dedicated hardware are required except the 3Com network card. The Amiga components are loaded at boot with `LoadModule`.
 
 ## Quick start
 
@@ -69,7 +69,7 @@ Replace `eth0` with the correct interface.
 Run:
 
 ```text
-wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2scsi.device
+wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2ice
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/ptable.library
 wget https://github.com/Telefonorosso/l2boot/raw/refs/heads/main/l2remote.boot
 
@@ -79,10 +79,9 @@ The system will reboot and scan for the server in the broadcast domain.
 
 ## Features
 
-* boot from remote Amiga RDB disks;
-* regular HDF files or Linux block devices;
+* boot from remote Amiga RDB / ADF images or Linux block devices;
 * write support;
-* multiple RDB partitions;
+* multiple partitions;
 * HDToolBox partitioning and resizing;
 * quick and full formatting;
 * automatic host discovery;
@@ -121,7 +120,7 @@ Sparse 1 GiB image:
 truncate -s 1G blank.hdf
 ```
 
-## Prepare a blank disk
+## Prepare the blank HDF
 
 Start the server once with:
 
@@ -170,7 +169,7 @@ For an initial read-only test:
 
 ## Direct DOS filesystem images e.g. FLOPPY IMAGES
 
-Some images begin directly with `DOS\0` to `DOS\7` and contain no RDB.
+Floppy images begin directly with `DOS\0` to `DOS\7` and contain no RDB.
 
 By default, the server can expose compatible images through a temporary virtual RDB.
 
@@ -209,7 +208,7 @@ Physical disk:
 
 ## Linux virtual machines
 
-The server has been verified under Debian running in VirtualBox on Windows.
+The server has been tested under Debian running in VirtualBox on Windows.
 
 Use bridged networking, not NAT.
 
@@ -239,7 +238,8 @@ Verified:
 * Amiga 1200;
 * AmigaOS 3.x;
 * Kickstart 40.68 with LoadModule;
-* 3Com EtherLink III PCMCIA;
+* 3Com EtherLink III PCMCIA 3C589C for 10BASE-T and Coax
+* 3Com EtherLink III PCMCIA 3C589D-TP for 10BASE-T
 * native Amiga RDB images;
 * multiple partitions;
 * bootable remote partitions;
@@ -277,7 +277,7 @@ The driver handles normal disk reads and writes, geometry queries, SCSI commands
 
 Provides the RDB partition-table support used during the Amiga boot process.
 
-Its job is to understand the Amiga Rigid Disk Block structures stored on `scsi.device` unit 0, locate the `PART` entries and create the corresponding AmigaDOS partition information.
+Its job is to understand the Amiga Rigid Disk Block structures stored on `l2scsi.device` unit 0, locate the `PART` entries and create the corresponding AmigaDOS partition information.
 
 `ptable.library` does not communicate with the Linux server and does not implement the Ethernet disk driver itself. It works on top of an already available block device.
 
