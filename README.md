@@ -1,4 +1,4 @@
-# l2boot
+# l2boot - AI CODED
 Amiga 600/1200 net-boot with a 3Com Etherlink III
 
 l2boot allows an Amiga 600 or Amiga 1200 to mount and boot from an HDF image or physical disk hosted in Linux.
